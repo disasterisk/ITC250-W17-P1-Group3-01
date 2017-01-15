@@ -6,15 +6,25 @@ define('THIS_PAGE',basename($_SERVER['PHP_SELF']));
 if(isset($_POST['Temperature']))
 {
     $T = $_POST['Temperature'];
+    $U = $_POST['Units'];
     if (!is_numeric($T)) {
         echo "Please enter a valid number.";
+    }
+    elseif ($U == 'Fahrenheit' && $T < -459.67) {
+        echo "Temperatures below -459.67 degrees Fahrenheit are impossible!";
+    }
+    elseif ($U == 'Celsius' && $T < -273.15) {
+        echo "Temperatures below -273.15 degrees Celsius are impossible!";
+    }
+    elseif ($U == 'Kelvin' && $T < 0) {
+        echo "Temperatures below 0 Kelvin are impossible!";
     }
     else {
         // convert user input to a float value
         $temperature = floatval($T);
 
         // determine which temperature type the user has selected and echo appropriate results
-        switch($_POST['Units'])
+        switch($U)
         {
             case 'Fahrenheit':
                 echo 'You entered ' . $T . ' degrees Fahrenheit <br />';
