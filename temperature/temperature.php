@@ -6,7 +6,7 @@ define('THIS_PAGE',basename($_SERVER['PHP_SELF']));
 // display results if user has entered a temperature
 if(isset($_POST['Temperature']))
 {
-    $T = $_POST['Temperature']
+    $T = $_POST['Temperature'];
     // convert user input to a float value
     $temperature = floatval($T);
 
